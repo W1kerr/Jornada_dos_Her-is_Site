@@ -274,6 +274,19 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
   let state = ensureSchema(JSON.parse($('#state').textContent));
   let draft = null;
   const view = () => draft || state;
+  /* ---------- agendamento: capítulo só aparece depois de publishAt (hora do navegador de quem lê) ---------- */
+  const dueMs = c => { const t = c && c.publishAt ? Date.parse(c.publishAt) : NaN; return isNaN(t) ? 0 : t; };
+  const isLive = (c, now) => dueMs(c) <= (now == null ? Date.now() : now);
+  const fmtWhen = iso => { try { return new Date(iso).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' }); } catch (e) { return ''; } };
+  const fmtDay = iso => { try { return new Date(iso).toLocaleDateString('pt-BR', { day: 'numeric', month: 'short', year: 'numeric' }).replace(/\./g, ''); } catch (e) { return ''; } };
+  const toLocalInput = iso => { const t = Date.parse(iso || ''); if (isNaN(t)) return ''; const d = new Date(t), z = n => String(n).padStart(2, '0'); return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate()) + 'T' + z(d.getHours()) + ':' + z(d.getMinutes()); };
+  function pubView(s) { const all = s.chapters; const now = Date.now(); return Object.assign({}, s, { chapters: all.filter(c => isLive(c, now)), _all: all }); }
+  let revealTimer = null;
+  function armReveal() {
+    clearTimeout(revealTimer); if (ui.canEdit) return;
+    const now = Date.now(); const next = state.chapters.map(dueMs).filter(t => t > now).sort((a, b) => a - b)[0];
+    if (next) revealTimer = setTimeout(() => { renderSite(false); }, Math.min(next - now + 500, 2147000000));
+  }
   const ui = { canEdit: false, local: false, login: { open: false, err: '', busy: false }, fails: 0, open: false, tab: 'chapters', sel: { chapters: -1, characters: -1 }, dirty: false, busy: false, confirm: null, status: { kind: 'info', text: 'Edite e clique em Salvar e publicar.' } };
 
   /* ---------- capacidades da plataforma ---------- */
@@ -307,7 +320,7 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
 
   /* ---------- páginas públicas ---------- */
   function readMin(c) { return Math.max(1, Math.round(words(c.body) / 200)); }
-  function metaLine(c) { return [c.date, readMin(c) + ' min de leitura'].filter(Boolean).map(esc).join(' · '); }
+  function metaLine(c) { return [c.date || (c.publishAt ? fmtDay(c.publishAt) : ''), readMin(c) + ' min de leitura'].filter(Boolean).map(esc).join(' · '); }
   function body(text) {
     return String(text || '').split(/\n{2,}/).map(b => b.trim()).filter(Boolean).map(b => {
       if (/^\d{1,2}$/.test(b)) return '<div class="sep">✦ ' + b + ' ✦</div>';
@@ -350,12 +363,14 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
       '<button class="btn ghost" data-go="mundo">Conhecer o mundo</button></div></div>' +
       (cover ? '<div class="hero-art"><img src="' + cover + '" alt="Capa"></div>' : '') + '</div>' +
       '<div class="section-title"><h2>Capítulos</h2><div class="line"></div></div>';
-    h += cs.length ? '<div class="grid">' + cs.map(c => '<button class="card" data-go="capitulo-' + c.id + '"><span class="num">' + esc(c.kicker) + '</span><h3>' + esc(c.title) + '</h3>' + (c.blurb ? '<p>' + esc(c.blurb) + '</p>' : '') + '<span class="meta">' + metaLine(c) + '</span></button>').join('') + '</div>'
+    h += cs.length ? '<div class="grid">' + cs.map(c => '<button class="card" data-go="capitulo-' + c.id + '"><span class="num">' + esc(c.kicker) + '</span><h3>' + esc(c.title) + '</h3>' + (c.blurb ? '<p>' + esc(c.blurb) + '</p>' : '') + '<span class="meta">' + (ui.canEdit && !isLive(c) ? '⏰ Agendado para ' + esc(fmtWhen(c.publishAt)) + ' · ' : '') + metaLine(c) + '</span></button>').join('') + '</div>'
       : '<div class="empty">Nenhum capítulo publicado ainda.</div>';
     return h + followHtml(s) + '</section>';
   }
   function chapterHtml(s, id) {
     const i = s.chapters.findIndex(c => c.id === id);
+    const hid = i < 0 && s._all ? s._all.find(c => c.id === id && !isLive(c)) : null;
+    if (hid) return '<section class="view"><div class="empty">Este capítulo será liberado em ' + esc(fmtWhen(hid.publishAt)) + '.</div><p style="text-align:center"><button class="btn ghost" data-go="home">Ver capítulos</button></p></section>';
     if (i < 0) return '<section class="view"><div class="empty">Capítulo não encontrado.</div><p style="text-align:center"><button class="btn ghost" data-go="home">Ver capítulos</button></p></section>';
     const c = s.chapters[i]; const prev = s.chapters[i - 1]; const next = s.chapters[i + 1];
     return '<section class="view"><div class="reader"><div class="toolbar"><button class="btn ghost" data-go="home">← Capítulos</button><div class="tools"><button class="btn ghost small" data-act="share">Compartilhar</button><span>Texto</span><button class="iconbtn" data-act="fs" data-d="-1" aria-label="Diminuir texto">A−</button><button class="iconbtn" data-act="fs" data-d="1" aria-label="Aumentar texto">A+</button></div></div>' +
@@ -392,7 +407,7 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
       '<div class="prose">' + paras(a.text) + (links.length ? '<div class="links">' + links.map(l => '<a class="btn ghost small" href="' + esc(l.url) + '" target="_blank" rel="noopener noreferrer">' + esc(l.label || l.url) + '</a>').join('') + '</div>' : '') + '</div></div></section>';
   }
   function renderSite(top) {
-    const s = view(); const r = parseRoute(); const y = window.scrollY;
+    const s = ui.canEdit ? view() : pubView(view()); const r = parseRoute(); const y = window.scrollY;
     let page;
     if (r.name === 'cap') page = chapterHtml(s, r.id);
     else if (r.name === 'mundo') page = worldHtml(s);
@@ -401,7 +416,7 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
     else page = homeHtml(s);
     $('#root').innerHTML = headerHtml(s, r) + '<main class="gutter">' + page + '</main><footer class="site gutter">' + esc(s.site.footer) + (ui.canEdit ? '' : ' <button class="alogin" data-act="login">Área do autor</button>') + '</footer>';
     if (top) window.scrollTo(0, 0); else window.scrollTo(0, y);
-    updateProgress();
+    updateProgress(); armReveal();
   }
   function updateProgress() {
     const reading = parseRoute().name === 'cap';
@@ -492,6 +507,10 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
       const p = 'chapters.' + i;
       const inner = fText('Rótulo', p + '.kicker', { ph: 'Capítulo 3' }) + fText('Título', p + '.title') +
         fText('Data de publicação (opcional)', p + '.date', { ph: 'ex.: 12 nov 2026' }) +
+        '<label class="f"><span>Agendar para (opcional)</span><input type="datetime-local" data-sched="' + i + '" value="' + esc(toLocalInput(c.publishAt)) + '">' +
+        '<small>Deixe vazio para o capítulo aparecer assim que você publicar. Com data e hora, ele fica oculto no site até esse momento (fuso ' + esc((Intl.DateTimeFormat().resolvedOptions().timeZone) || 'do navegador') + '). ' +
+        'O texto continua dentro do arquivo do site, então isso não é um segredo absoluto. Depois de publicar com agendamento, o capítulo só entra no feed e no mapa do site na publicação seguinte.</small>' +
+        (c.publishAt ? '<button class="btn ghost small" type="button" data-a="clearsched" data-i="' + i + '" style="margin-top:6px">Remover agendamento</button>' : '') + '</label>' +
         fText('Resumo (aparece no cartão da página inicial)', p + '.blurb', { area: true, rows: 3 }) +
         fText('Texto do capítulo', p + '.body', { area: true, big: true }) +
         '<small id="wc">' + words(c.body) + ' palavras</small>' +
@@ -500,7 +519,7 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
         '<button class="btn ghost small" data-a="copych" data-v="title" data-i="' + i + '">Copiar título</button>' +
         '<button class="btn ghost small" data-a="copych" data-v="body" data-i="' + i + '">Copiar texto</button>' +
         '<button class="btn ghost small" data-a="copych" data-v="both" data-i="' + i + '">Copiar título + texto</button></div>';
-      return item('chapters', i, (c.kicker || '') + ' · ' + (c.title || '(sem título)'), inner, true);
+      return item('chapters', i, (c.kicker || '') + ' · ' + (c.title || '(sem título)') + (c.publishAt && !isLive(c) ? ' · ⏰ ' + fmtWhen(c.publishAt) : ''), inner, true);
     }).join('');
     return h + addBtn('chapters', 'Novo capítulo');
   }
@@ -753,7 +772,7 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
     return stripMd(first || '').slice(0, 200);
   }
   const xmlEsc = t => String(t == null ? '' : t).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
-  const STATIC_JS = "(function(){var d=document.documentElement,K=function(k){try{return localStorage.getItem(k)}catch(e){return null}};var t=K('theme');d.dataset.theme=(t==='light')?'light':'dark';var fs=parseInt(K('fs'),10)||19;function af(){d.style.setProperty('--fs',fs+'px');try{localStorage.setItem('fs',String(fs))}catch(e){}}af();" +
+  const STATIC_JS = "(function(){var d=document.documentElement,K=function(k){try{return localStorage.getItem(k)}catch(e){return null}};var t=K('theme');d.dataset.theme=(t==='light')?'light':'dark';var at=Date.parse(d.dataset.at||'');if(at&&Date.now()<at){var mn=document.querySelector('main');if(mn){mn.innerHTML='<section class=\\'view\\'><div class=\\'empty\\'>Este capítulo será liberado em '+new Date(at).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'})+'.</div><p style=\\'text-align:center\\'><a class=\\'btn ghost\\' href=\\'../\\'>Ver capítulos</a></p></section>';setTimeout(function(){location.reload()},Math.min(at-Date.now()+1000,2147000000));}}var fs=parseInt(K('fs'),10)||19;function af(){d.style.setProperty('--fs',fs+'px');try{localStorage.setItem('fs',String(fs))}catch(e){}}af();" +
     "document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-act]');if(!a)return;var k=a.dataset.act;" +
     "if(k==='theme'){var dk=d.dataset.theme?d.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;d.dataset.theme=dk?'light':'dark';try{localStorage.setItem('theme',d.dataset.theme)}catch(x){}}" +
     "if(k==='fs'){fs=Math.max(15,Math.min(28,fs+parseInt(a.dataset.d,10)));af();}" +
@@ -764,7 +783,7 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
     const base = siteBase(st); const c = st.chapters[i]; const prev = st.chapters[i - 1], next = st.chapters[i + 1];
     const title = c.title + ' · ' + st.site.brand; const url = base ? base + 'capitulo-' + c.id + '/' : ''; const desc = descOf(c);
     const og = base && /^data:image\//.test(st.site.cover || '');
-    let h = "<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,viewport-fit=cover'><title>" + esc(title) + "</title>" +
+    let h = "<!doctype html><html lang='pt-BR'" + (!isLive(c) ? " data-at='" + esc(c.publishAt) + "'" : '') + "><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,viewport-fit=cover'><title>" + esc(title) + "</title>" +
       "<meta name='description' content='" + esc(desc) + "'><meta name='theme-color' content='#2f7d57'><meta property='og:type' content='article'><meta property='og:site_name' content='" + esc(st.site.brand) + "'><meta property='og:title' content='" + esc(title) + "'><meta property='og:description' content='" + esc(desc) + "'><meta property='og:locale' content='pt_BR'>";
     if (base) h += "<link rel='canonical' href='" + esc(url) + "'><meta property='og:url' content='" + esc(url) + "'><link rel='alternate' type='application/rss+xml' title='" + esc(st.site.brand) + "' href='" + esc(base + 'feed.xml') + "'>";
     if (og) h += "<meta property='og:image' content='" + esc(base + 'og.jpg') + "'><meta property='og:image:width' content='1200'><meta property='og:image:height' content='630'><meta name='twitter:card' content='summary_large_image'><meta name='twitter:image' content='" + esc(base + 'og.jpg') + "'>";
@@ -780,10 +799,10 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
   }
   function sitemapXml(st, base) {
     return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>' + xmlEsc(base) + '</loc></url>\n' +
-      st.chapters.map(c => '  <url><loc>' + xmlEsc(base + 'capitulo-' + c.id + '/') + '</loc></url>\n').join('') + '</urlset>\n';
+      st.chapters.filter(c => isLive(c)).map(c => '  <url><loc>' + xmlEsc(base + 'capitulo-' + c.id + '/') + '</loc></url>\n').join('') + '</urlset>\n';
   }
   function feedXml(st, base) {
-    const items = st.chapters.slice().reverse().map(c => {
+    const items = st.chapters.filter(c => isLive(c)).reverse().map(c => {
       const link = base + 'capitulo-' + c.id + '/'; const ok = /^\d{4}-\d{2}-\d{2}/.test(c.date || '') && !isNaN(Date.parse(c.date));
       return '    <item><title>' + xmlEsc(c.title) + '</title><link>' + xmlEsc(link) + '</link><guid isPermaLink="true">' + xmlEsc(link) + '</guid>' + (ok ? '<pubDate>' + new Date(c.date).toUTCString() + '</pubDate>' : '') + '<description>' + xmlEsc(descOf(c)) + '</description></item>\n';
     }).join('');
@@ -969,6 +988,7 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
       changed(); return;
     }
     if (a === 'clear') { setp(draft, b.dataset.p, ''); changed(); return; }
+    if (a === 'clearsched') { const c = draft.chapters[i]; if (c) { c.publishAt = ''; changed(); } return; }
     if (a === 'publish') { publishNow(); return; }
     if (a === 'download') { downloadCopy(); return; }
     if (a === 'discard') {
@@ -978,13 +998,19 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
   }
   function onAdminInput(e) {
     const t = e.target; const p = t.dataset && t.dataset.p;
+    if (t.dataset && t.dataset.sched !== undefined && draft) {
+      const c = draft.chapters[parseInt(t.dataset.sched, 10)]; if (!c) return;
+      const ms = t.value ? new Date(t.value).getTime() : NaN; c.publishAt = isNaN(ms) ? '' : new Date(ms).toISOString();
+      markDirty(); scheduleSite(); return;
+    }
     if (!p || !draft) return;
     setp(draft, p, t.value); markDirty();
     if (/\.body$/.test(p)) { const wc = $('#wc'); if (wc) wc.textContent = words(t.value) + ' palavras'; }
     scheduleSite();
   }
   function onAdminChange(e) {
-    const t = e.target; if (!draft || t.type !== 'file') return;
+    const t = e.target; if (draft && t.dataset && t.dataset.sched !== undefined) { renderAdmin(false); return; }
+    if (!draft || t.type !== 'file') return;
     const f = t.files && t.files[0];
     if (t.dataset.img) { onImage(t.dataset.img, f); }
     else if (t.dataset.import && f) {
