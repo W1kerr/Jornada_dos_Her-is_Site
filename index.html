@@ -753,7 +753,7 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
     return stripMd(first || '').slice(0, 200);
   }
   const xmlEsc = t => String(t == null ? '' : t).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
-  const STATIC_JS = "(function(){var d=document.documentElement,K=function(k){try{return localStorage.getItem(k)}catch(e){return null}};var t=K('theme');if(t==='light'||t==='dark')d.dataset.theme=t;var fs=parseInt(K('fs'),10)||19;function af(){d.style.setProperty('--fs',fs+'px');try{localStorage.setItem('fs',String(fs))}catch(e){}}af();" +
+  const STATIC_JS = "(function(){var d=document.documentElement,K=function(k){try{return localStorage.getItem(k)}catch(e){return null}};var t=K('theme');d.dataset.theme=(t==='light')?'light':'dark';var fs=parseInt(K('fs'),10)||19;function af(){d.style.setProperty('--fs',fs+'px');try{localStorage.setItem('fs',String(fs))}catch(e){}}af();" +
     "document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-act]');if(!a)return;var k=a.dataset.act;" +
     "if(k==='theme'){var dk=d.dataset.theme?d.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;d.dataset.theme=dk?'light':'dark';try{localStorage.setItem('theme',d.dataset.theme)}catch(x){}}" +
     "if(k==='fs'){fs=Math.max(15,Math.min(28,fs+parseInt(a.dataset.d,10)));af();}" +
@@ -1011,7 +1011,7 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
     renderAdmin(false);
   }
 
-  try { const th = store.get('theme'); if (th === 'light' || th === 'dark') document.documentElement.dataset.theme = th; } catch (e) { /* tema do sistema */ }
+  try { const th = store.get('theme'); document.documentElement.dataset.theme = th === 'light' ? 'light' : 'dark'; } catch (e) { document.documentElement.dataset.theme = 'dark'; } /* escuro por padrão; só vira claro se o visitante escolher */
   applyFs();
   renderSite(true);
   initAdmin();
