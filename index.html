@@ -803,8 +803,8 @@ function buildDoc(state, css, code) { return HEAD + metaTags(state) + STYLE_OPEN
   }
   function feedXml(st, base) {
     const items = st.chapters.filter(c => isLive(c)).reverse().map(c => {
-      const link = base + 'capitulo-' + c.id + '/'; const ok = /^\d{4}-\d{2}-\d{2}/.test(c.date || '') && !isNaN(Date.parse(c.date));
-      return '    <item><title>' + xmlEsc(c.title) + '</title><link>' + xmlEsc(link) + '</link><guid isPermaLink="true">' + xmlEsc(link) + '</guid>' + (ok ? '<pubDate>' + new Date(c.date).toUTCString() + '</pubDate>' : '') + '<description>' + xmlEsc(descOf(c)) + '</description></item>\n';
+      const link = base + 'capitulo-' + c.id + '/'; const src = c.publishAt && !isNaN(Date.parse(c.publishAt)) ? c.publishAt : c.date; const ok = /^\d{4}-\d{2}-\d{2}/.test(src || '') && !isNaN(Date.parse(src));
+      return '    <item><title>' + xmlEsc(c.title) + '</title><link>' + xmlEsc(link) + '</link><guid isPermaLink="true">' + xmlEsc(link) + '</guid>' + (ok ? '<pubDate>' + new Date(src).toUTCString() + '</pubDate>' : '') + '<description>' + xmlEsc(descOf(c)) + '</description></item>\n';
     }).join('');
     return '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>\n  <title>' + xmlEsc(st.site.brand) + '</title><link>' + xmlEsc(base) + '</link><description>' + xmlEsc(String(st.site.heroText || '').slice(0, 300)) + '</description><language>pt-BR</language><atom:link href="' + xmlEsc(base + 'feed.xml') + '" rel="self" type="application/rss+xml"/>\n' + items + '</channel></rss>\n';
   }
