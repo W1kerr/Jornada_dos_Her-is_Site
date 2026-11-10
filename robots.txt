@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://W1kerr.github.io/Jornada-dos-Her-is-Site/sitemap.xml
+Sitemap: https://w1kerr.github.io/Jornada_dos_Her-is_Site/sitemap.xml
