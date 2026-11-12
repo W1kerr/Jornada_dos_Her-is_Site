@@ -1,0 +1,221 @@
+<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,viewport-fit=cover'><title>A Recusa · Jornada dos Heróis</title><meta name='description' content='A Segunda Grande Expedição quer Kewy, e Kewy diz não. Até a princesa lhe entregar um livro que só ele sabe ler.'><meta name='theme-color' content='#2f7d57'><meta property='og:type' content='article'><meta property='og:site_name' content='Jornada dos Heróis'><meta property='og:title' content='A Recusa · Jornada dos Heróis'><meta property='og:description' content='A Segunda Grande Expedição quer Kewy, e Kewy diz não. Até a princesa lhe entregar um livro que só ele sabe ler.'><meta property='og:locale' content='pt_BR'><link rel='canonical' href='https://w1kerr.github.io/Jornada_dos_Her-is_Site/capitulo-4/'><meta property='og:url' content='https://w1kerr.github.io/Jornada_dos_Her-is_Site/capitulo-4/'><link rel='alternate' type='application/rss+xml' title='Jornada dos Heróis' href='https://w1kerr.github.io/Jornada_dos_Her-is_Site/feed.xml'><meta property='og:image' content='https://w1kerr.github.io/Jornada_dos_Her-is_Site/og.jpg'><meta property='og:image:width' content='1200'><meta property='og:image:height' content='630'><meta name='twitter:card' content='summary_large_image'><meta name='twitter:image' content='https://w1kerr.github.io/Jornada_dos_Her-is_Site/og.jpg'><meta name='twitter:title' content='A Recusa · Jornada dos Heróis'><meta name='twitter:description' content='A Segunda Grande Expedição quer Kewy, e Kewy diz não. Até a princesa lhe entregar um livro que só ele sabe ler.'><link rel='preconnect' href='https://fonts.googleapis.com'><link rel='preconnect' href='https://fonts.gstatic.com' crossorigin><link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap'><style>/* Layout: cabeçalho fixo, páginas em uma coluna central de 1060px; painel de edição em gaveta lateral à direita (tela cheia no celular). */
+:root{
+  --bg:#f1f5ec; --bg2:#e6eddd; --panel:#fbfdf7; --panel2:#f3f7ec; --line:#cfdcc3;
+  --ink:#1e2b22; --ink-dim:#4b5e51; --head:#1f4d36; --accent:#2f7a55; --accent-soft:#4f9a73;
+  --gold:#7a5f14; --btn-bg:#2f7a55; --btn-ink:#f6fbf4; --danger:#a8392b; --ok:#2f7a55;
+  --art:#d3e2d0; --shadow:0 10px 30px rgba(31,77,54,.12);
+  --hero-bg:#10291d; --hero-bg2:#1b4631; --hero-ink:#f3faf1; --hero-dim:#cfe2d3; --hero-accent:#bfe6cb;
+  --fs:19px; --serif:'Lora',Georgia,'Times New Roman',serif; --display:'Cinzel',Georgia,'Times New Roman',serif;
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1813; --bg2:#12201a; --panel:#15251d; --panel2:#18291f; --line:#29402f;
+    --ink:#e3ebe0; --ink-dim:#a2b5a6; --head:#b7e0c3; --accent:#7cc79a; --accent-soft:#5aa87c;
+    --gold:#d6c37a; --btn-bg:#7cc79a; --btn-ink:#0b1a12; --danger:#ee9486; --ok:#7cc79a;
+    --art:#26402f; --shadow:0 12px 34px rgba(0,0,0,.45); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1813; --bg2:#12201a; --panel:#15251d; --panel2:#18291f; --line:#29402f;
+  --ink:#e3ebe0; --ink-dim:#a2b5a6; --head:#b7e0c3; --accent:#7cc79a; --accent-soft:#5aa87c;
+  --gold:#d6c37a; --btn-bg:#7cc79a; --btn-ink:#0b1a12; --danger:#ee9486; --ok:#7cc79a;
+  --art:#26402f; --shadow:0 12px 34px rgba(0,0,0,.45); color-scheme:dark;
+}
+*{box-sizing:border-box;}
+html{scroll-padding-top:70px;}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--serif); font-size:17px; line-height:1.7;
+  overflow-wrap:break-word; overflow-x:clip;
+}
+[hidden]{display:none!important;}
+img{max-width:100%; display:block;}
+button,input,textarea{font:inherit; color:inherit;}
+h1,h2,h3,h4,.brand,.navlink,.btn,.eyebrow,.role,.num{font-family:var(--display);}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); background:var(--bg); z-index:60;}
+#progress{position:fixed; left:0; top:env(safe-area-inset-top,0px); height:3px; width:0; background:var(--accent); z-index:70;}
+
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));}
+header.top{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+  background:var(--bg); border-bottom:1px solid var(--line);
+}
+header.top .in{max-width:1060px; margin:0 auto; padding-block:10px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+.brand{font-weight:700; font-size:1.08rem; color:var(--head); letter-spacing:.8px; border:0; background:none; cursor:pointer; padding:0; text-align:left;}
+nav{display:flex; gap:4px; align-items:center;}
+.navlink{padding:7px 13px; border-radius:999px; font-size:.82rem; letter-spacing:.5px; color:var(--ink-dim); border:1px solid transparent; background:none; cursor:pointer; white-space:nowrap;}
+.navlink:hover{color:var(--ink); border-color:var(--line);}
+.navlink.active{background:var(--accent); color:var(--btn-ink); border-color:var(--accent);}
+.iconbtn{width:36px; height:36px; flex:0 0 auto; border-radius:50%; border:1px solid var(--line); background:var(--panel); cursor:pointer; line-height:1; font-size:.9rem;}
+.iconbtn:hover{border-color:var(--accent-soft);}
+
+main{max-width:1060px; margin:0 auto; padding-bottom:64px;}
+.view{animation:fade .3s ease;}
+@keyframes fade{from{opacity:0; transform:translateY(5px);} to{opacity:1; transform:none;}}
+@media (prefers-reduced-motion: reduce){.view{animation:none;}}
+
+.hero{display:grid; grid-template-columns:1.15fr .85fr; align-items:center; gap:clamp(18px,4vw,44px); margin:24px 0 36px; padding:clamp(18px,4vw,40px); border-radius:20px; border:1px solid var(--line); box-shadow:var(--shadow); background:linear-gradient(135deg,var(--hero-bg),var(--hero-bg2));}
+.hero-text{min-width:0; display:flex; flex-direction:column; justify-content:center;}
+.hero-art{order:2; min-width:0;}
+.hero-art img{width:100%; max-height:560px; object-fit:contain; border-radius:14px; box-shadow:0 14px 40px rgba(0,0,0,.4);}
+.eyebrow{color:var(--hero-accent); letter-spacing:4px; font-size:.74rem; text-transform:uppercase; margin-bottom:6px;}
+.hero h1{font-size:clamp(1.9rem,5vw,3rem); margin:0 0 10px; color:var(--hero-ink); font-weight:700; text-wrap:balance;}
+.hero p{max-width:560px; color:var(--hero-dim); margin:0 0 18px; font-size:1rem;}
+.actions{display:flex; gap:10px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:11px 20px; border-radius:10px; background:var(--btn-bg); color:var(--btn-ink); font-weight:700; font-size:.8rem; letter-spacing:1px; border:1px solid var(--btn-bg); cursor:pointer; text-decoration:none;}
+.btn:hover{filter:brightness(1.08);}
+.btn.ghost{background:transparent; color:var(--accent); border-color:var(--accent);}
+.btn.small{padding:7px 12px; font-size:.72rem; letter-spacing:.6px;}
+.btn.danger{background:transparent; color:var(--danger); border-color:var(--danger);}
+.btn:disabled{opacity:.55; cursor:default;}
+.hero .btn.ghost{color:var(--hero-ink); border-color:var(--hero-accent);}
+
+.section-title{display:flex; align-items:center; gap:14px; margin:34px 0 18px;}
+.section-title h2{font-size:1.3rem; color:var(--head); letter-spacing:1px; margin:0; font-weight:700;}
+.section-title .line{flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent);}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:18px;}
+.empty{color:var(--ink-dim); padding:28px; border:1px dashed var(--line); border-radius:14px; text-align:center;}
+
+.card{text-align:left; width:100%; min-width:0; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px; cursor:pointer; box-shadow:var(--shadow); transition:transform .18s, border-color .18s; display:flex; flex-direction:column; gap:8px;}
+.card:hover{transform:translateY(-3px); border-color:var(--accent-soft);}
+.card .num{color:var(--accent); font-size:.72rem; letter-spacing:2px; text-transform:uppercase;}
+.card h3{margin:0; font-size:1.12rem; color:var(--head); text-wrap:balance;}
+.card p{color:var(--ink-dim); font-size:.94rem; margin:0;}
+.card .meta{color:var(--ink-dim); font-size:.8rem; margin-top:auto; padding-top:6px;}
+
+.reader{background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:clamp(18px,5vw,56px); margin-top:20px; box-shadow:var(--shadow);}
+.toolbar{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:26px;}
+.tools{display:flex; gap:6px; align-items:center; color:var(--ink-dim); font-size:.8rem;}
+.tools .iconbtn{width:34px; height:34px; font-family:var(--display); font-weight:700; font-size:.8rem;}
+.kicker{color:var(--gold); letter-spacing:3px; font-size:.74rem; text-transform:uppercase; font-family:var(--display);}
+.reader h2{font-size:clamp(1.55rem,4vw,2.2rem); margin:8px 0 6px; color:var(--head); font-weight:700; text-wrap:balance;}
+.reader .sub{color:var(--ink-dim); font-size:.88rem; margin:0 0 30px;}
+.prose{max-width:68ch; margin:0 auto;}
+.reader .prose p{margin:0 0 1.2em; font-size:var(--fs); line-height:1.85; color:var(--ink);}
+.reader .prose h3{font-size:1.15rem; color:var(--head); margin:1.8em 0 .8em; letter-spacing:1px;}
+.reader .prose .sep{text-align:center; color:var(--accent); letter-spacing:10px; margin:2.2em 0; font-family:var(--display); font-size:.95rem;}
+.chnav{display:flex; justify-content:space-between; margin-top:44px; padding-top:22px; border-top:1px solid var(--line); gap:12px; flex-wrap:wrap;}
+
+.figure{margin:0 0 26px; border-radius:18px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow); background:var(--panel);}
+.figure img{width:100%;}
+.figure figcaption{padding:10px 16px; font-size:.85rem; color:var(--ink-dim); font-style:italic;}
+.zoom{display:block; width:100%; padding:0; border:0; background:none; cursor:zoom-in;}
+.lore{display:grid; grid-template-columns:1.25fr 1fr; gap:32px; align-items:start;}
+.lore > *{min-width:0;}
+.lore .prose{max-width:none; margin:0;}
+.lore .prose p{margin:0 0 1.1em;}
+.factbox{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:16px;}
+.factbox h4{margin:0 0 4px; color:var(--head); font-size:.9rem; letter-spacing:1px;}
+.factbox p{color:var(--ink-dim); font-size:.93rem; margin:0;}
+.gal{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px;}
+.gal figure{margin:0; background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+.gal img{width:100%; aspect-ratio:4/5; object-fit:cover; object-position:top; background:var(--art);}
+.gal figcaption{padding:8px 12px; font-size:.82rem; color:var(--ink-dim);}
+
+.char-card{background:var(--panel); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); min-width:0;}
+.char-card .ph{width:100%; aspect-ratio:3/4; object-fit:contain; background:var(--art);}
+.char-card .body{padding:16px 20px 22px;}
+.char-card h3{margin:0 0 2px; color:var(--head); font-size:1.08rem;}
+.role{color:var(--accent); font-size:.72rem; letter-spacing:1.2px; text-transform:uppercase; margin-bottom:8px; display:block;}
+.char-card p{color:var(--ink-dim); font-size:.93rem; margin:0;}
+.mini{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 18px; min-width:0;}
+.mini h3{margin:0 0 2px; color:var(--head); font-size:1rem;}
+.mini p{color:var(--ink-dim); font-size:.9rem; margin:6px 0 0;}
+
+.about{display:grid; grid-template-columns:.8fr 1.3fr; gap:34px; align-items:start;}
+.about.solo{grid-template-columns:1fr;}
+.about > *{min-width:0;}
+.about-photo img{width:100%; border-radius:18px; border:1px solid var(--line);}
+.about .prose{margin:0;}
+.about .prose p{margin:0 0 1.1em;}
+.links{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;}
+footer.site{border-top:1px solid var(--line); color:var(--ink-dim); font-size:.82rem; text-align:center; padding-block:26px;}
+@media(max-width:760px){
+  .hero{grid-template-columns:1fr;}
+  .hero-art{order:0;}
+  .hero-art img{max-height:70vh;}
+  .lore,.about{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  header.top .in{flex-direction:column; align-items:stretch; gap:6px;}
+  nav{overflow-x:auto; scrollbar-width:none;}
+  nav::-webkit-scrollbar{display:none;}
+  .navlink,.iconbtn{flex:0 0 auto;}
+  .grid{grid-template-columns:1fr;}
+  .reader{padding:18px 16px;}
+  .section-title{margin:26px 0 14px;}
+  .chnav .btn{flex:1;}
+  .hero .btn{flex:1 1 100%;}
+}
+
+#lb{position:fixed; inset:0; z-index:120; background:rgba(5,12,8,.92); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));}
+#lb img{max-width:100%; max-height:calc(100% - 44px); object-fit:contain; border-radius:8px; cursor:zoom-out;}
+#lb p{margin:0; color:#e3ebe0; font-size:.9rem; text-align:center;}
+#lb .x{position:absolute; top:calc(10px + env(safe-area-inset-top,0px)); right:max(10px,env(safe-area-inset-right,0px)); width:40px; height:40px; border-radius:50%; border:1px solid #5d7a66; background:#15251d; color:#e3ebe0; cursor:pointer;}
+
+/* ---------- painel de administração ---------- */
+.fab{position:fixed; right:calc(16px + env(safe-area-inset-right,0px)); bottom:calc(16px + env(safe-area-inset-bottom,0px)); z-index:80; display:flex; align-items:center; gap:8px; padding:11px 18px; border-radius:999px; border:1px solid var(--btn-bg); background:var(--btn-bg); color:var(--btn-ink); font-family:var(--display); font-weight:700; font-size:.8rem; letter-spacing:.8px; box-shadow:0 8px 24px rgba(0,0,0,.28); cursor:pointer;}
+.fab .dot{width:9px; height:9px; border-radius:50%; background:#f2c14e;}
+.drawer{position:fixed; top:0; right:0; bottom:0; width:min(480px,100%); z-index:90; display:flex; flex-direction:column; background:var(--panel); border-left:1px solid var(--line); box-shadow:-12px 0 40px rgba(0,0,0,.25); padding-top:env(safe-area-inset-top,0px); padding-right:env(safe-area-inset-right,0px); font-family:var(--serif); font-size:15px; line-height:1.5;}
+.dhead{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 16px; border-bottom:1px solid var(--line);}
+.dhead h2{margin:0; font-size:1rem; color:var(--head); letter-spacing:.8px;}
+.tabs{display:flex; gap:4px; overflow-x:auto; padding:8px 12px; border-bottom:1px solid var(--line); scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex:0 0 auto; padding:7px 12px; border-radius:999px; border:1px solid transparent; background:none; cursor:pointer; font-family:var(--display); font-size:.74rem; letter-spacing:.5px; color:var(--ink-dim);}
+.tab.on{background:var(--accent); color:var(--btn-ink);}
+.dbody{flex:1; min-height:0; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:14px;}
+.dfoot{border-top:1px solid var(--line); padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px)); display:flex; flex-direction:column; gap:8px; background:var(--panel);}
+.dfoot .row{display:flex; gap:8px; flex-wrap:wrap;}
+.dfoot .row .btn{flex:1 1 auto;}
+.status{font-size:.85rem; color:var(--ink-dim);}
+.status.err{color:var(--danger);}
+.status.ok{color:var(--ok);}
+.hint{font-size:.85rem; color:var(--ink-dim); background:var(--bg2); border-radius:10px; padding:10px 12px;}
+.f{display:flex; flex-direction:column; gap:4px; min-width:0;}
+.f > span{font-family:var(--display); font-size:.72rem; letter-spacing:.8px; color:var(--head); text-transform:uppercase;}
+.f small{color:var(--ink-dim); font-size:.78rem;}
+.f input[type=text],.f input[type=password],.f textarea{width:100%; padding:9px 11px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink); font-size:16px; line-height:1.5;}
+.f textarea{resize:vertical; min-height:80px;}
+.f textarea.big{min-height:300px; font-family:var(--serif);}
+.imgf{display:flex; gap:12px; align-items:center;}
+.imgf img,.imgf .noimg{width:72px; height:72px; object-fit:cover; border-radius:8px; border:1px solid var(--line); background:var(--art); flex:0 0 auto;}
+.imgf .noimg{display:flex; align-items:center; justify-content:center; font-size:.68rem; color:var(--ink-dim); text-align:center; padding:4px;}
+.imgb{display:flex; gap:6px; flex-wrap:wrap;}
+.item{border:1px solid var(--line); border-radius:12px; background:var(--bg); overflow:hidden;}
+.ihead{display:flex; align-items:center; gap:6px; padding:8px 8px 8px 12px;}
+.ititle{flex:1; min-width:0; text-align:left; background:none; border:0; cursor:pointer; font-size:.9rem; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding:6px 0;}
+.ibtn{flex:0 0 auto; min-width:34px; height:34px; border-radius:8px; border:1px solid var(--line); background:var(--panel); cursor:pointer; font-size:.85rem; padding:0 8px;}
+.ibtn.danger{color:var(--danger); border-color:var(--danger);}
+.ibtn:disabled{opacity:.35; cursor:default;}
+.ibody{padding:4px 12px 14px; display:flex; flex-direction:column; gap:12px; border-top:1px solid var(--line);}
+.ibody > :first-child{margin-top:10px;}
+.sectionlabel{font-family:var(--display); font-size:.78rem; letter-spacing:1px; color:var(--head); margin:6px 0 -4px; text-transform:uppercase;}
+@media (max-width:600px){ .drawer{width:100%;} }
+
+.alogin{margin-left:10px; padding:2px 0; background:none; border:0; border-bottom:1px dotted currentColor; color:inherit; font:inherit; font-size:.85em; opacity:.6; cursor:pointer;}
+.alogin:hover{opacity:1;}
+.lgbg{position:fixed; inset:0; z-index:120; display:flex; align-items:center; justify-content:center; padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px)); background:rgba(10,25,15,.55);}
+.lg{width:min(400px,100%); display:flex; flex-direction:column; gap:12px; padding:22px; border-radius:16px; background:var(--panel); color:var(--ink); border:1px solid var(--line); box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.lg h2{margin:0; font-size:1.2rem;}
+.lg p{margin:0; font-size:.92rem; line-height:1.5; opacity:.85;}
+.lg input{width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink); font-size:16px;}
+.lg .row{display:flex; gap:10px; justify-content:flex-end;}
+.lgerr{min-height:1.2em; font-size:.88rem; color:var(--danger);}
+
+.ghbox{display:flex; flex-direction:column; gap:12px; margin-top:22px; padding-top:18px; border-top:1px solid var(--line);}
+.ghbox h3{margin:0; font-size:1rem;}
+.tkok{font-size:.9rem; color:var(--accent);}
+
+.follow{margin-top:36px; padding:20px; border:1px solid var(--line); border-radius:14px; background:var(--panel2);}
+.follow h4{margin:0 0 4px; color:var(--head); font-size:1.02rem;}
+.follow p{margin:0 0 6px; color:var(--ink-dim); font-size:.92rem;}
+.reader h1.ch-title{font-size:clamp(1.55rem,4vw,2.2rem); margin:8px 0 6px; color:var(--head); font-weight:700; text-wrap:balance;}
+
+.cpbar{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid var(--line);}
+.cpbar .hint{flex:1 1 100%; margin:0;}
+.cpbar textarea.cpbox{flex:1 1 100%; width:100%; font:inherit; font-size:.85rem; padding:8px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink);}
+.hero-text .sched{margin:0 0 14px; color:var(--head); font-weight:600; font-size:.95rem;}
+.nudge{text-align:center; margin:26px 0 0; color:var(--ink-dim);}
+a.brand,a.navlink,a.btn,a.iconbtn{text-decoration:none;} a.brand{display:inline-block;} a.navlink{display:inline-block;} a.btn{display:inline-flex;}</style></head><body><div id='progress'></div><header class="top"><div class="gutter"><div class="in"><a class="brand" href="../">✦ Jornada dos Heróis</a><nav><a class="navlink active" href="../">Início</a><a class="navlink" href="../#mundo">Mundo</a><a class="navlink" href="../#personagens">Personagens</a><a class="navlink" href="../#sobre">Sobre</a><button class="iconbtn" data-act="theme" aria-label="Alternar tema">◐</button></nav></div></div></header><main class="gutter"><section class="view"><div class="reader"><div class="toolbar"><a class="btn ghost" href="../">← Capítulos</a><div class="tools"><button class="btn ghost small" data-act="share">Compartilhar</button><span>Texto</span><button class="iconbtn" data-act="fs" data-d="-1" aria-label="Diminuir texto">A−</button><button class="iconbtn" data-act="fs" data-d="1" aria-label="Aumentar texto">A+</button></div></div><div class="prose"><div class="kicker">Nova versão · Capítulo 2</div><h1 class="ch-title">A Recusa</h1><p class="sub">8 min de leitura</p></div><div class="prose"><p>Por um instante, ninguém disse nada, e o único som na padaria foi o do forno esfriando.</p><p>A loba cruzou o salão e parou ao lado do balcão, olhando as prateleiras como quem avalia um campo de batalha. Depois entrou a figura baixa e encapuzada, e por último uma mulher mascarada, de cabelos negros tão longos que passavam da cintura. Tinha um par de asas negras dobradas nas costas e uma espada na cintura. A máscara era branca, lisa, sem boca.</p><p>— Filho de Flare — disse ela, sem pressa. — Os olhos cor de mel o entregam. É um prazer.</p><p>— O prazer é... meu. Mas o que... quem são vocês? O que estão fazendo aqui?</p><p>Passos curtos e silenciosos soaram da porta, e uma figura ruiva já bem conhecida apareceu.</p><p>— Pelo amor, Kewy, você é mesmo um medroso. Arrume essa postura. A princesa vai entrar.</p><p>— Louise! Foi você quem chamou essa gente toda?</p><p>— Eu disse a eles que você era a pior opção do reino. Fui ignorada.</p><p>— Louise...</p><p>— Postura.</p><p>A figura encapuzada entrou. Alva vinha logo atrás, fechando a porta. Quando o capuz caiu, apareceu uma garota de cabelos brancos como fios de algodão, olhos azuis de céu de verão e uma beleza tão delicada que parecia emprestada. As roupas eram leves e caras. As luvas, não. Eram grossas demais para um dia quente.</p><p>— Princesa Althea! — Kewy se curvou com tanta pressa que bateu o quadril no balcão. — É uma honra!</p><p>— Que reação inesperada. Achei que Alva o havia avisado sobre o nosso encontro.</p><p>— Minha senhora — disse a criada, sem mudar a expressão —, talvez eu não tenha sido muito específica sobre os nossos objetivos.</p><p>— Entendo. Tudo bem.</p><p>Kewy olhou de uma para a outra, sentindo o rosto arder pela segunda vez no dia. <em>Fique após o horário. É importante.</em> Tinha varrido o chão. Tinha passado perfume.</p><p>Passos de salto ecoaram na entrada, e o manto púrpura voltou a ocupar a porta.</p><p>— Desculpem o atraso. Começaram sem mim?</p><p>— Chegou bem na hora, senhora Elaine — respondeu a princesa.</p><p>Elaine, a Grande Maga. A mulher que derrotara um exército orc inteiro com uma única conjuração, e que Kewy vira passar em desfile, anos atrás, com o mesmo manto. Ela sorriu para ele de um jeito que fez o chão da padaria parecer menor.</p><p>O olhar dela deslizou pelo rosto dele, desceu até a gola da camisa e demorou ali meio segundo a mais do que a cortesia pedia. Kewy sentiu a corrente esquentar contra o peito. Quando piscou, ela já sorria de novo.</p><p>— É uma honra ter tantas figuras ilustres aqui — disse Kewy, devagar. — Mas o que vocês estão fazendo na minha padaria a esta hora?</p><p>— Não é óbvio, filho de Flare?</p><p>Elaine ergueu uma das mãos, como quem convida alguém para dançar.</p><p>— Estamos requisitando você para a Segunda Grande Expedição. Vamos, enfim, encontrar a cura da doença que assola o nosso mundo.</p><p>O tempo pareceu se recusar a continuar. As palavras ficaram no ar, pesadas demais para serem verdade.</p><p>— Definitivamente, não!</p><div class="sep">✦ ✦ ✦</div><p>Todos na padaria tiveram o mesmo pensamento: esse garoto era mesmo descendente dos heróis?</p><p>— Agradeço o tempo de vocês, de verdade — disse Kewy, coçando a nuca. — Mas não me imagino saindo de Eldrick. Tenho muito o que fazer aqui.</p><p>— Muitos pães e tortas devem aguardar desesperadamente por suas mãos — disse Elaine.</p><p>— S-sim. Faço um serviço indispensável. Este lugar não pode fechar.</p><p>— Quanto a isso, não se preocupe — disse a princesa. — Os chefs do palácio assumem o forno. Nenhum cliente seu será prejudicado.</p><p>Kewy percebeu que, qualquer problema que levantasse, eles teriam uma solução pronta. Pensou no caderno de capa preta, que não explicava nada, e se perguntou se os chefs conseguiriam aprender o que ele próprio não entendia. Descartou o pensamento. Não era a hora.</p><p>Então resolveu ser sincero.</p><p>— Não tenho força, não tenho agilidade, nem a coragem de um herói. Tentei ser bom em magia, tentei o exército. Se eu aceitar, o resultado é o mesmo de sempre: um desastre.</p><p>A mulher mascarada deu um passo à frente.</p><p>— Esse é o sangue de Flare? — A voz saiu baixa e cortante. — Se não quer arriscar a sua preciosa “paz” pela chance de salvar milhões, então não é digno. E a morte de Kraus e de Flare não foi desastre algum. Eles deram a vida para que um dia houvesse cura. Foram dignos de se chamar heróis. Ao que parece, o título não serve para todos.</p><p>O clima pesou. Louise abriu a boca para dizer alguma coisa, e Alva a conteve com um olhar.</p><p>A mascarada suspirou. Olhou para a princesa, e a voz saiu mais cansada do que dura.</p><p>— Eu disse o que tinha para dizer. O resto é com ela.</p><p>Deu as costas e saiu, e a loba a seguiu, lançando a Kewy um último olhar de advertência. Na soleira, a mascarada parou meio segundo, a mão pousada na bainha dourada que levava na cintura. Albescere. Todo mundo em Eldrick a reconheceria, a espada dos grandes heróis, que ninguém empunhava desde a última expedição. Ela olhou para a arma, não para ele, e saiu.</p><p>Althea tirou de dentro da capa um pacote envolto em pano encerado, do tamanho de um livro grande, preso por três voltas de cordão e um selo de cera vermelha.</p><p>— Isto chegou ao palácio alguns meses antes de o seu tio morrer. Veio com um bilhete de uma linha: <em>só para o meu sobrinho.</em></p><p>Kewy sentiu os joelhos amolecerem. Quebrou o selo com o polegar, desfez o cordão e abriu o pano sobre o balcão. Um livro de capa de couro escuro, gasto nos cantos. Na primeira página, uma letra apertada, inclinada para a esquerda, a mesma que o mandava todos os dias: <em>não alterar.</em> E, no meio da frase, um círculo cortado por um traço.</p><p>— Os eruditos do reino passaram dois meses sobre isso — disse Althea. — Quatro mestres de runas chamaram de impossível. Nem sabemos se é uma língua.</p><p>— É tempo — disse Kewy.</p><p>Todos olharam para ele. Ele nem tinha percebido que falara.</p><p>— O círculo com o traço. Aparece no caderno de receitas, ao lado de cada tempo de forno. Quarenta minutos, duas horas. — Passou o dedo pela linha. — Aqui diz: <em>Para quem ainda tem tempo.</em></p><p>Louise, perto da porta, tinha parado de fingir que não estava ouvindo.</p><p>— Seu tio escreveu na única língua que sabia que você entenderia — disse Althea. — Ninguém mais, em lugar nenhum, passou dez anos copiando aquele código sem saber que era um. A página seguinte é uma lista de sete linhas. Acreditamos que seja a receita da cura do Mal da Alvura. Não conseguimos ler uma só delas.</p><p>— Posso copiar o que entendo e mandar as páginas para vocês. Mas não pretendo me aventurar por aí. Gosto da paz que tenho.</p><p>— Cada linha daquela lista é um lugar, Sr. Narick — disse Althea. — Ninguém aprende um código por carta.</p><p>Ele estava mentindo, e sabia. Todo o corpo dele queria o contrário. Mas tinham sido tantos desastres, tantas mortes. De que adiantava ser mais um número entre os que tentaram e falharam?</p><p>A princesa atravessou o salão e parou diante dele. Tirou a luva direita, devagar, e pousou a palma no peito de Kewy.</p><p>Era pequena e fria. A pele cor de neve acabava no pulso. Dali para cima, subindo pela mão e sumindo sob a manga, escuros cristais enroscavam-se no braço dela como geada.</p><p>Contra o peito dele, sob a camisa, a corrente queimou por um instante, como se tivesse reconhecido alguma coisa. Ele deixou passar. Não era a hora de pensar nisso.</p><p>— Seu tio me manteve viva por mais de um ano. Não sei o que ele fez, mas tenho certeza de que, se estou viva até agora, é por causa dele — disse ela, em voz baixa. — Mas tudo tem limite. Cheguei ao meu.</p><p>— Sei que a chama de Flare ainda arde em você. Um dia essa fagulha vira brasa — continuou Althea. — Os que forem partem amanhã, na primeira embarcação da tarde. Esperarei a sua escolha. Mas lembre-se: é só sua.</p><p>Recolocou a luva e deixou o livro sobre o balcão, ao lado do prato de bolo. Saiu, com Alva atrás. Pouco a pouco, o silêncio voltou a dominar a padaria, e só então Kewy percebeu que Louise continuava ali.</p><p>— Estou sendo um covarde, eu sei.</p><p>Esperava ser zombado até o limite. Não foi.</p><p>Louise atravessou o salão e pegou, com dois dedos, o mindinho esquerdo dele, o que estava enfaixado. Não apertou nem perguntou nada. Segurou, como se tentasse decidir se dizia algo.</p><p>A boca abriu e fechou duas vezes.</p><p>No fim, suspirou. Soltou a mão dele e caminhou até a porta. Lá, cruzou os braços, de costas.</p><p>— Até que não seria tão ruim se você fosse. Eu poderia te ensinar um pouco de magia. Começaríamos por runas, talvez élfico, feitiços conjuntivos. Você teria a honra de treinar comigo. Não é algo para muitos.</p><p>Kewy entendeu o que ela queria dizer. Respondeu do jeito que sabia.</p><p>— Seria um prazer. Mas preciso pensar.</p><p>— Entendo.</p><p>Ela se foi, e a porta se fechou devagar.</p><p>Kewy trancou o livro no armário dos fundos, girou a chave duas vezes e guardou a chave no bolso do avental. Guardar coisas era o que ele sabia fazer.</p><p>Depois desfez a faixa do dedo, devagar, sob a luz do lampião.</p><p>O ponto branco tinha crescido pela metade de um grão de sal desde a manhã.</p></div><div class="chnav"><a class="btn ghost" href="../capitulo-3/">← Anterior</a><a class="btn" href="../capitulo-5/">Próximo →</a></div><div class="follow"><h4>Acompanhe a história</h4><p>Fique sabendo quando sair o próximo capítulo.</p><div class="links"><a class="btn ghost small" href="https://w1kerr.github.io/Jornada_dos_Her-is_Site/feed.xml" target="_blank" rel="noopener noreferrer">Feed RSS</a></div></div></div></section></main><footer class="site gutter">Jornada dos Heróis. Novos capítulos são publicados aqui conforme ficam prontos.</footer><script>(function(){var d=document.documentElement,K=function(k){try{return localStorage.getItem(k)}catch(e){return null}};var t=K('theme');d.dataset.theme=(t==='light')?'light':'dark';var at=Date.parse(d.dataset.at||'');if(at&&Date.now()<at){var mn=document.querySelector('main');if(mn){mn.innerHTML='<section class=\'view\'><div class=\'empty\'>Este capítulo será liberado em '+new Date(at).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'})+'.</div><p style=\'text-align:center\'><a class=\'btn ghost\' href=\'../\'>Ver capítulos</a></p></section>';setTimeout(function(){location.reload()},Math.min(at-Date.now()+1000,2147000000));}}var fs=parseInt(K('fs'),10)||19;function af(){d.style.setProperty('--fs',fs+'px');try{localStorage.setItem('fs',String(fs))}catch(e){}}af();document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-act]');if(!a)return;var k=a.dataset.act;if(k==='theme'){var dk=d.dataset.theme?d.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;d.dataset.theme=dk?'light':'dark';try{localStorage.setItem('theme',d.dataset.theme)}catch(x){}}if(k==='fs'){fs=Math.max(15,Math.min(28,fs+parseInt(a.dataset.d,10)));af();}if(k==='share'){var u=location.href.split('#')[0],tt=document.title;if(navigator.share){navigator.share({title:tt,url:u}).catch(function(){});}else{var ok=function(){a.textContent='Link copiado ✓';setTimeout(function(){a.textContent='Compartilhar'},2200)},no=function(){a.textContent='Copie o link da barra de endereço'};try{navigator.clipboard.writeText(u).then(ok,no)}catch(x){no()}}}});var p=document.getElementById('progress');function up(){var m=d.scrollHeight-innerHeight;p.style.width=(m>0?scrollY/m*100:0)+'%'}addEventListener('scroll',up,{passive:true});up();})();</script></body></html>

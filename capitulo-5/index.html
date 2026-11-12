@@ -1,0 +1,221 @@
+<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,viewport-fit=cover'><title>A Única Coisa · Jornada dos Heróis</title><meta name='description' content='Um sonho com a última expedição, um livro que volta ao peito e uma conversa na praça sobre a única coisa que cada um sabe fazer.'><meta name='theme-color' content='#2f7d57'><meta property='og:type' content='article'><meta property='og:site_name' content='Jornada dos Heróis'><meta property='og:title' content='A Única Coisa · Jornada dos Heróis'><meta property='og:description' content='Um sonho com a última expedição, um livro que volta ao peito e uma conversa na praça sobre a única coisa que cada um sabe fazer.'><meta property='og:locale' content='pt_BR'><link rel='canonical' href='https://w1kerr.github.io/Jornada_dos_Her-is_Site/capitulo-5/'><meta property='og:url' content='https://w1kerr.github.io/Jornada_dos_Her-is_Site/capitulo-5/'><link rel='alternate' type='application/rss+xml' title='Jornada dos Heróis' href='https://w1kerr.github.io/Jornada_dos_Her-is_Site/feed.xml'><meta property='og:image' content='https://w1kerr.github.io/Jornada_dos_Her-is_Site/og.jpg'><meta property='og:image:width' content='1200'><meta property='og:image:height' content='630'><meta name='twitter:card' content='summary_large_image'><meta name='twitter:image' content='https://w1kerr.github.io/Jornada_dos_Her-is_Site/og.jpg'><meta name='twitter:title' content='A Única Coisa · Jornada dos Heróis'><meta name='twitter:description' content='Um sonho com a última expedição, um livro que volta ao peito e uma conversa na praça sobre a única coisa que cada um sabe fazer.'><link rel='preconnect' href='https://fonts.googleapis.com'><link rel='preconnect' href='https://fonts.gstatic.com' crossorigin><link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap'><style>/* Layout: cabeçalho fixo, páginas em uma coluna central de 1060px; painel de edição em gaveta lateral à direita (tela cheia no celular). */
+:root{
+  --bg:#f1f5ec; --bg2:#e6eddd; --panel:#fbfdf7; --panel2:#f3f7ec; --line:#cfdcc3;
+  --ink:#1e2b22; --ink-dim:#4b5e51; --head:#1f4d36; --accent:#2f7a55; --accent-soft:#4f9a73;
+  --gold:#7a5f14; --btn-bg:#2f7a55; --btn-ink:#f6fbf4; --danger:#a8392b; --ok:#2f7a55;
+  --art:#d3e2d0; --shadow:0 10px 30px rgba(31,77,54,.12);
+  --hero-bg:#10291d; --hero-bg2:#1b4631; --hero-ink:#f3faf1; --hero-dim:#cfe2d3; --hero-accent:#bfe6cb;
+  --fs:19px; --serif:'Lora',Georgia,'Times New Roman',serif; --display:'Cinzel',Georgia,'Times New Roman',serif;
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1813; --bg2:#12201a; --panel:#15251d; --panel2:#18291f; --line:#29402f;
+    --ink:#e3ebe0; --ink-dim:#a2b5a6; --head:#b7e0c3; --accent:#7cc79a; --accent-soft:#5aa87c;
+    --gold:#d6c37a; --btn-bg:#7cc79a; --btn-ink:#0b1a12; --danger:#ee9486; --ok:#7cc79a;
+    --art:#26402f; --shadow:0 12px 34px rgba(0,0,0,.45); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1813; --bg2:#12201a; --panel:#15251d; --panel2:#18291f; --line:#29402f;
+  --ink:#e3ebe0; --ink-dim:#a2b5a6; --head:#b7e0c3; --accent:#7cc79a; --accent-soft:#5aa87c;
+  --gold:#d6c37a; --btn-bg:#7cc79a; --btn-ink:#0b1a12; --danger:#ee9486; --ok:#7cc79a;
+  --art:#26402f; --shadow:0 12px 34px rgba(0,0,0,.45); color-scheme:dark;
+}
+*{box-sizing:border-box;}
+html{scroll-padding-top:70px;}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--serif); font-size:17px; line-height:1.7;
+  overflow-wrap:break-word; overflow-x:clip;
+}
+[hidden]{display:none!important;}
+img{max-width:100%; display:block;}
+button,input,textarea{font:inherit; color:inherit;}
+h1,h2,h3,h4,.brand,.navlink,.btn,.eyebrow,.role,.num{font-family:var(--display);}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); background:var(--bg); z-index:60;}
+#progress{position:fixed; left:0; top:env(safe-area-inset-top,0px); height:3px; width:0; background:var(--accent); z-index:70;}
+
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));}
+header.top{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+  background:var(--bg); border-bottom:1px solid var(--line);
+}
+header.top .in{max-width:1060px; margin:0 auto; padding-block:10px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+.brand{font-weight:700; font-size:1.08rem; color:var(--head); letter-spacing:.8px; border:0; background:none; cursor:pointer; padding:0; text-align:left;}
+nav{display:flex; gap:4px; align-items:center;}
+.navlink{padding:7px 13px; border-radius:999px; font-size:.82rem; letter-spacing:.5px; color:var(--ink-dim); border:1px solid transparent; background:none; cursor:pointer; white-space:nowrap;}
+.navlink:hover{color:var(--ink); border-color:var(--line);}
+.navlink.active{background:var(--accent); color:var(--btn-ink); border-color:var(--accent);}
+.iconbtn{width:36px; height:36px; flex:0 0 auto; border-radius:50%; border:1px solid var(--line); background:var(--panel); cursor:pointer; line-height:1; font-size:.9rem;}
+.iconbtn:hover{border-color:var(--accent-soft);}
+
+main{max-width:1060px; margin:0 auto; padding-bottom:64px;}
+.view{animation:fade .3s ease;}
+@keyframes fade{from{opacity:0; transform:translateY(5px);} to{opacity:1; transform:none;}}
+@media (prefers-reduced-motion: reduce){.view{animation:none;}}
+
+.hero{display:grid; grid-template-columns:1.15fr .85fr; align-items:center; gap:clamp(18px,4vw,44px); margin:24px 0 36px; padding:clamp(18px,4vw,40px); border-radius:20px; border:1px solid var(--line); box-shadow:var(--shadow); background:linear-gradient(135deg,var(--hero-bg),var(--hero-bg2));}
+.hero-text{min-width:0; display:flex; flex-direction:column; justify-content:center;}
+.hero-art{order:2; min-width:0;}
+.hero-art img{width:100%; max-height:560px; object-fit:contain; border-radius:14px; box-shadow:0 14px 40px rgba(0,0,0,.4);}
+.eyebrow{color:var(--hero-accent); letter-spacing:4px; font-size:.74rem; text-transform:uppercase; margin-bottom:6px;}
+.hero h1{font-size:clamp(1.9rem,5vw,3rem); margin:0 0 10px; color:var(--hero-ink); font-weight:700; text-wrap:balance;}
+.hero p{max-width:560px; color:var(--hero-dim); margin:0 0 18px; font-size:1rem;}
+.actions{display:flex; gap:10px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:11px 20px; border-radius:10px; background:var(--btn-bg); color:var(--btn-ink); font-weight:700; font-size:.8rem; letter-spacing:1px; border:1px solid var(--btn-bg); cursor:pointer; text-decoration:none;}
+.btn:hover{filter:brightness(1.08);}
+.btn.ghost{background:transparent; color:var(--accent); border-color:var(--accent);}
+.btn.small{padding:7px 12px; font-size:.72rem; letter-spacing:.6px;}
+.btn.danger{background:transparent; color:var(--danger); border-color:var(--danger);}
+.btn:disabled{opacity:.55; cursor:default;}
+.hero .btn.ghost{color:var(--hero-ink); border-color:var(--hero-accent);}
+
+.section-title{display:flex; align-items:center; gap:14px; margin:34px 0 18px;}
+.section-title h2{font-size:1.3rem; color:var(--head); letter-spacing:1px; margin:0; font-weight:700;}
+.section-title .line{flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent);}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:18px;}
+.empty{color:var(--ink-dim); padding:28px; border:1px dashed var(--line); border-radius:14px; text-align:center;}
+
+.card{text-align:left; width:100%; min-width:0; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px; cursor:pointer; box-shadow:var(--shadow); transition:transform .18s, border-color .18s; display:flex; flex-direction:column; gap:8px;}
+.card:hover{transform:translateY(-3px); border-color:var(--accent-soft);}
+.card .num{color:var(--accent); font-size:.72rem; letter-spacing:2px; text-transform:uppercase;}
+.card h3{margin:0; font-size:1.12rem; color:var(--head); text-wrap:balance;}
+.card p{color:var(--ink-dim); font-size:.94rem; margin:0;}
+.card .meta{color:var(--ink-dim); font-size:.8rem; margin-top:auto; padding-top:6px;}
+
+.reader{background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:clamp(18px,5vw,56px); margin-top:20px; box-shadow:var(--shadow);}
+.toolbar{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:26px;}
+.tools{display:flex; gap:6px; align-items:center; color:var(--ink-dim); font-size:.8rem;}
+.tools .iconbtn{width:34px; height:34px; font-family:var(--display); font-weight:700; font-size:.8rem;}
+.kicker{color:var(--gold); letter-spacing:3px; font-size:.74rem; text-transform:uppercase; font-family:var(--display);}
+.reader h2{font-size:clamp(1.55rem,4vw,2.2rem); margin:8px 0 6px; color:var(--head); font-weight:700; text-wrap:balance;}
+.reader .sub{color:var(--ink-dim); font-size:.88rem; margin:0 0 30px;}
+.prose{max-width:68ch; margin:0 auto;}
+.reader .prose p{margin:0 0 1.2em; font-size:var(--fs); line-height:1.85; color:var(--ink);}
+.reader .prose h3{font-size:1.15rem; color:var(--head); margin:1.8em 0 .8em; letter-spacing:1px;}
+.reader .prose .sep{text-align:center; color:var(--accent); letter-spacing:10px; margin:2.2em 0; font-family:var(--display); font-size:.95rem;}
+.chnav{display:flex; justify-content:space-between; margin-top:44px; padding-top:22px; border-top:1px solid var(--line); gap:12px; flex-wrap:wrap;}
+
+.figure{margin:0 0 26px; border-radius:18px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow); background:var(--panel);}
+.figure img{width:100%;}
+.figure figcaption{padding:10px 16px; font-size:.85rem; color:var(--ink-dim); font-style:italic;}
+.zoom{display:block; width:100%; padding:0; border:0; background:none; cursor:zoom-in;}
+.lore{display:grid; grid-template-columns:1.25fr 1fr; gap:32px; align-items:start;}
+.lore > *{min-width:0;}
+.lore .prose{max-width:none; margin:0;}
+.lore .prose p{margin:0 0 1.1em;}
+.factbox{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:16px;}
+.factbox h4{margin:0 0 4px; color:var(--head); font-size:.9rem; letter-spacing:1px;}
+.factbox p{color:var(--ink-dim); font-size:.93rem; margin:0;}
+.gal{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px;}
+.gal figure{margin:0; background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+.gal img{width:100%; aspect-ratio:4/5; object-fit:cover; object-position:top; background:var(--art);}
+.gal figcaption{padding:8px 12px; font-size:.82rem; color:var(--ink-dim);}
+
+.char-card{background:var(--panel); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); min-width:0;}
+.char-card .ph{width:100%; aspect-ratio:3/4; object-fit:contain; background:var(--art);}
+.char-card .body{padding:16px 20px 22px;}
+.char-card h3{margin:0 0 2px; color:var(--head); font-size:1.08rem;}
+.role{color:var(--accent); font-size:.72rem; letter-spacing:1.2px; text-transform:uppercase; margin-bottom:8px; display:block;}
+.char-card p{color:var(--ink-dim); font-size:.93rem; margin:0;}
+.mini{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 18px; min-width:0;}
+.mini h3{margin:0 0 2px; color:var(--head); font-size:1rem;}
+.mini p{color:var(--ink-dim); font-size:.9rem; margin:6px 0 0;}
+
+.about{display:grid; grid-template-columns:.8fr 1.3fr; gap:34px; align-items:start;}
+.about.solo{grid-template-columns:1fr;}
+.about > *{min-width:0;}
+.about-photo img{width:100%; border-radius:18px; border:1px solid var(--line);}
+.about .prose{margin:0;}
+.about .prose p{margin:0 0 1.1em;}
+.links{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;}
+footer.site{border-top:1px solid var(--line); color:var(--ink-dim); font-size:.82rem; text-align:center; padding-block:26px;}
+@media(max-width:760px){
+  .hero{grid-template-columns:1fr;}
+  .hero-art{order:0;}
+  .hero-art img{max-height:70vh;}
+  .lore,.about{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  header.top .in{flex-direction:column; align-items:stretch; gap:6px;}
+  nav{overflow-x:auto; scrollbar-width:none;}
+  nav::-webkit-scrollbar{display:none;}
+  .navlink,.iconbtn{flex:0 0 auto;}
+  .grid{grid-template-columns:1fr;}
+  .reader{padding:18px 16px;}
+  .section-title{margin:26px 0 14px;}
+  .chnav .btn{flex:1;}
+  .hero .btn{flex:1 1 100%;}
+}
+
+#lb{position:fixed; inset:0; z-index:120; background:rgba(5,12,8,.92); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));}
+#lb img{max-width:100%; max-height:calc(100% - 44px); object-fit:contain; border-radius:8px; cursor:zoom-out;}
+#lb p{margin:0; color:#e3ebe0; font-size:.9rem; text-align:center;}
+#lb .x{position:absolute; top:calc(10px + env(safe-area-inset-top,0px)); right:max(10px,env(safe-area-inset-right,0px)); width:40px; height:40px; border-radius:50%; border:1px solid #5d7a66; background:#15251d; color:#e3ebe0; cursor:pointer;}
+
+/* ---------- painel de administração ---------- */
+.fab{position:fixed; right:calc(16px + env(safe-area-inset-right,0px)); bottom:calc(16px + env(safe-area-inset-bottom,0px)); z-index:80; display:flex; align-items:center; gap:8px; padding:11px 18px; border-radius:999px; border:1px solid var(--btn-bg); background:var(--btn-bg); color:var(--btn-ink); font-family:var(--display); font-weight:700; font-size:.8rem; letter-spacing:.8px; box-shadow:0 8px 24px rgba(0,0,0,.28); cursor:pointer;}
+.fab .dot{width:9px; height:9px; border-radius:50%; background:#f2c14e;}
+.drawer{position:fixed; top:0; right:0; bottom:0; width:min(480px,100%); z-index:90; display:flex; flex-direction:column; background:var(--panel); border-left:1px solid var(--line); box-shadow:-12px 0 40px rgba(0,0,0,.25); padding-top:env(safe-area-inset-top,0px); padding-right:env(safe-area-inset-right,0px); font-family:var(--serif); font-size:15px; line-height:1.5;}
+.dhead{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 16px; border-bottom:1px solid var(--line);}
+.dhead h2{margin:0; font-size:1rem; color:var(--head); letter-spacing:.8px;}
+.tabs{display:flex; gap:4px; overflow-x:auto; padding:8px 12px; border-bottom:1px solid var(--line); scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex:0 0 auto; padding:7px 12px; border-radius:999px; border:1px solid transparent; background:none; cursor:pointer; font-family:var(--display); font-size:.74rem; letter-spacing:.5px; color:var(--ink-dim);}
+.tab.on{background:var(--accent); color:var(--btn-ink);}
+.dbody{flex:1; min-height:0; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:14px;}
+.dfoot{border-top:1px solid var(--line); padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px)); display:flex; flex-direction:column; gap:8px; background:var(--panel);}
+.dfoot .row{display:flex; gap:8px; flex-wrap:wrap;}
+.dfoot .row .btn{flex:1 1 auto;}
+.status{font-size:.85rem; color:var(--ink-dim);}
+.status.err{color:var(--danger);}
+.status.ok{color:var(--ok);}
+.hint{font-size:.85rem; color:var(--ink-dim); background:var(--bg2); border-radius:10px; padding:10px 12px;}
+.f{display:flex; flex-direction:column; gap:4px; min-width:0;}
+.f > span{font-family:var(--display); font-size:.72rem; letter-spacing:.8px; color:var(--head); text-transform:uppercase;}
+.f small{color:var(--ink-dim); font-size:.78rem;}
+.f input[type=text],.f input[type=password],.f textarea{width:100%; padding:9px 11px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink); font-size:16px; line-height:1.5;}
+.f textarea{resize:vertical; min-height:80px;}
+.f textarea.big{min-height:300px; font-family:var(--serif);}
+.imgf{display:flex; gap:12px; align-items:center;}
+.imgf img,.imgf .noimg{width:72px; height:72px; object-fit:cover; border-radius:8px; border:1px solid var(--line); background:var(--art); flex:0 0 auto;}
+.imgf .noimg{display:flex; align-items:center; justify-content:center; font-size:.68rem; color:var(--ink-dim); text-align:center; padding:4px;}
+.imgb{display:flex; gap:6px; flex-wrap:wrap;}
+.item{border:1px solid var(--line); border-radius:12px; background:var(--bg); overflow:hidden;}
+.ihead{display:flex; align-items:center; gap:6px; padding:8px 8px 8px 12px;}
+.ititle{flex:1; min-width:0; text-align:left; background:none; border:0; cursor:pointer; font-size:.9rem; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding:6px 0;}
+.ibtn{flex:0 0 auto; min-width:34px; height:34px; border-radius:8px; border:1px solid var(--line); background:var(--panel); cursor:pointer; font-size:.85rem; padding:0 8px;}
+.ibtn.danger{color:var(--danger); border-color:var(--danger);}
+.ibtn:disabled{opacity:.35; cursor:default;}
+.ibody{padding:4px 12px 14px; display:flex; flex-direction:column; gap:12px; border-top:1px solid var(--line);}
+.ibody > :first-child{margin-top:10px;}
+.sectionlabel{font-family:var(--display); font-size:.78rem; letter-spacing:1px; color:var(--head); margin:6px 0 -4px; text-transform:uppercase;}
+@media (max-width:600px){ .drawer{width:100%;} }
+
+.alogin{margin-left:10px; padding:2px 0; background:none; border:0; border-bottom:1px dotted currentColor; color:inherit; font:inherit; font-size:.85em; opacity:.6; cursor:pointer;}
+.alogin:hover{opacity:1;}
+.lgbg{position:fixed; inset:0; z-index:120; display:flex; align-items:center; justify-content:center; padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px)); background:rgba(10,25,15,.55);}
+.lg{width:min(400px,100%); display:flex; flex-direction:column; gap:12px; padding:22px; border-radius:16px; background:var(--panel); color:var(--ink); border:1px solid var(--line); box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.lg h2{margin:0; font-size:1.2rem;}
+.lg p{margin:0; font-size:.92rem; line-height:1.5; opacity:.85;}
+.lg input{width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink); font-size:16px;}
+.lg .row{display:flex; gap:10px; justify-content:flex-end;}
+.lgerr{min-height:1.2em; font-size:.88rem; color:var(--danger);}
+
+.ghbox{display:flex; flex-direction:column; gap:12px; margin-top:22px; padding-top:18px; border-top:1px solid var(--line);}
+.ghbox h3{margin:0; font-size:1rem;}
+.tkok{font-size:.9rem; color:var(--accent);}
+
+.follow{margin-top:36px; padding:20px; border:1px solid var(--line); border-radius:14px; background:var(--panel2);}
+.follow h4{margin:0 0 4px; color:var(--head); font-size:1.02rem;}
+.follow p{margin:0 0 6px; color:var(--ink-dim); font-size:.92rem;}
+.reader h1.ch-title{font-size:clamp(1.55rem,4vw,2.2rem); margin:8px 0 6px; color:var(--head); font-weight:700; text-wrap:balance;}
+
+.cpbar{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid var(--line);}
+.cpbar .hint{flex:1 1 100%; margin:0;}
+.cpbar textarea.cpbox{flex:1 1 100%; width:100%; font:inherit; font-size:.85rem; padding:8px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink);}
+.hero-text .sched{margin:0 0 14px; color:var(--head); font-weight:600; font-size:.95rem;}
+.nudge{text-align:center; margin:26px 0 0; color:var(--ink-dim);}
+a.brand,a.navlink,a.btn,a.iconbtn{text-decoration:none;} a.brand{display:inline-block;} a.navlink{display:inline-block;} a.btn{display:inline-flex;}</style></head><body><div id='progress'></div><header class="top"><div class="gutter"><div class="in"><a class="brand" href="../">✦ Jornada dos Heróis</a><nav><a class="navlink active" href="../">Início</a><a class="navlink" href="../#mundo">Mundo</a><a class="navlink" href="../#personagens">Personagens</a><a class="navlink" href="../#sobre">Sobre</a><button class="iconbtn" data-act="theme" aria-label="Alternar tema">◐</button></nav></div></div></header><main class="gutter"><section class="view"><div class="reader"><div class="toolbar"><a class="btn ghost" href="../">← Capítulos</a><div class="tools"><button class="btn ghost small" data-act="share">Compartilhar</button><span>Texto</span><button class="iconbtn" data-act="fs" data-d="-1" aria-label="Diminuir texto">A−</button><button class="iconbtn" data-act="fs" data-d="1" aria-label="Aumentar texto">A+</button></div></div><div class="prose"><div class="kicker">Nova versão · Capítulo 3</div><h1 class="ch-title">A Única Coisa</h1><p class="sub">7 min de leitura</p></div><div class="prose"><p>Naquela noite, Kewy sonhou com um lugar onde o céu era preto e a terra, cinza.</p><p>O ar tinha cheiro de metal e de coisa queimada, e entrava nos pulmões como se quisesse ficar. Ele ouviu um grito. Não era de dor, nem de medo. Era fúria pura, e vinha de uma colina de corpos de soldados empilhados como pedra.</p><p>No topo da colina, duas pessoas se encaravam. Um homem loiro, de armadura, e uma mulher de cabelos curtos e brancos, em vestes militares. Kewy não conseguia ouvir o que diziam, nem ver direito os rostos. Mas não eram aliados.</p><p>O cavaleiro ergueu a espada. O esforço consumiu o que lhe restava, e ele caiu de joelhos, e só então Kewy viu o braço decepado no chão, nadando no próprio sangue. A mulher riu. Uma risada de quem perdeu o juízo e não se importa. Avançou e cravou uma adaga no peito do cavaleiro, e disse algo que só os dois jamais saberiam. Depois ergueu o rosto para o céu cinzento, viu o fogo se aproximar e levou a mesma adaga ao próprio pescoço.</p><p>Kewy acordou com o coração disparado e o corpo molhado de suor, apesar do frio.</p><p>— Foi só um sonho.</p><p>O peito estava pesado. Tentou se sentar, e algo o impediu.</p><p>O livro estava sobre ele.</p><p>O livro do tio, aberto na primeira página, deitado sobre o seu peito como um gato. Ele o trancara no armário dos fundos. Tinha girado a chave duas vezes. A chave estava na mão dele, fechada com tanta força que deixara a marca dos dentes na palma. Ele não se lembrava de ter descido.</p><p>Kewy não dormiu de novo.</p><p>Enquanto esperava o sol, pensou em tudo o que já tinha tentado. Na Academia de Magia, no segundo ano, pediram que acendessem uma vela com uma magia de fogo simples. Louise acendeu quatro. A dele só fumegou, e ela ainda corrigiu a postura dele. No exército, o sargento cronometrava a corrida de cem passos, e Kewy terminava em último, todos os dias, durante meses. Quando desistiu, ninguém ficou surpreso, ele menos que todos.</p><p>Só na padaria alguma coisa tinha obedecido a ele pela primeira vez. Medida, tempo, ingrediente. Nada daquilo pedia mana, e nenhum professor de magia jamais se interessara por quem não precisava dela.</p><p>A corrente dourada com o cristal carmesim, que ele nunca tirava, estava mais quente do que de costume, quase febril. Por algum motivo, isso o acalmou. Não queria mais pensar em coisas tristes. A vida é o que é. Guardou o livro dentro da camisa, saiu do quarto, passou pelo escritório do tio sem olhar, desceu as escadas e abriu a porta da rua.</p><p>Ainda era cedo demais para a fornada, e os clientes reclamariam se o pão estivesse frio. Decidiu caminhar. Talvez isso acalmasse a cabeça.</p><p>Mas a ironia da vida dele era que, ao sair, encontrou a maior causa do seu estresse. Longos cabelos negros, asas, uma máscara branca.</p><p>— Sabia que você não conseguiria dormir — disse Thorkel.</p><p>— Grandes decisões tiram o sono de qualquer um — respondeu Kewy, com certa ironia.</p><p>— Comportamentos humanos ainda são um mistério para mim. Mas Flare também não dormia quando estava ansiosa.</p><p>Ele estranhou ouvir aquilo de uma desconhecida. Mas era assim havia muito tempo: saber da própria família por terceiros.</p><p>— O que faz aqui? Achei que nem me considerassem mais uma opção.</p><p>— Tenho pouca paciência com jovens da sua idade, e acho que me excedi ontem. Vim explicar com mais calma. Ninguém lhe contou sobre a primeira expedição, não é?</p><p>— Veio me convencer?</p><p>— Não cabe a mim decidir isso.</p><p>— Eu ia caminhar. Podemos conversar andando.</p><p>Ela concordou, e os dois andaram por muito tempo sem dizer uma palavra. Em algum ponto, os passos de Kewy se aceleraram, e a caminhada virou um trote, e o trote virou corrida em volta da praça. Thorkel o acompanhou sem esforço, como se tudo não passasse de um passeio no parque. Quando ele parou no centro da praça, sem fôlego, ela nem tinha suado.</p><p>— Urf... urf... Achei que ia conversar.</p><p>— Lembrei que não gosto de conversar enquanto caminho.</p><p>— Podia ter dito antes?</p><p>— Não enquanto estávamos andando.</p><p>Kewy a olhou sem saber se era piada. A aura de pessoa sábia dela perdeu um pouco do brilho.</p><p>Thorkel ergueu o rosto, e ele seguiu o olhar até a estátua no centro da praça, banhada pelo nascer do sol. Os grandes heróis, em pedra, já desgastados pelos anos. Kraus no meio, de espada em riste. Ao lado dele, Flare, radiante, erguendo o cajado. E, logo atrás, uma mulher baixa, de espada leve na cintura.</p><p>Kewy olhou da pedra para a mulher ao lado dele. Depois de novo para a pedra.</p><p>— Você é...</p><p>— Thorkel. Estive na última expedição. Sou a única que sabe o que de fato aconteceu lá.</p><p>Ela tirou a máscara. Uma cicatriz funda começava no peito, subia pelo pescoço e devorava parte do rosto. Não parecia ferida de guerra. Parecia algo que ainda estava ali, esperando.</p><p>— Fui imprudente. Estávamos cercados por oitenta mil soldados, todos controlados por uma única maga. Kraus mandou fugir e se reagrupar. Eu me precipitei. Vi a maga abaixar a guarda e ataquei, porque se ela morresse, tudo acabaria ali. Mas a que eu matei era um clone, e a maldição veio como resposta. Ela sabia o que eu ia fazer antes de eu fazer. Alguém contou a ela.</p><p>As mãos de Thorkel se fecharam.</p><p>— Flare gastou tudo o que tinha para prender a maldição que me atingiu e não pôde apoiar Kraus. Ele enfrentou os oitenta mil sozinho e venceu. Mas a maga esperou ele se esgotar e deu o último golpe, com uma adaga. E depois tirou a própria vida, por algum motivo desconhecido. Ela servia a Magnos, o rei de Luminarya. Guarde esse nome.</p><p>A colina do sonho estava ali, inteira, na praça. A colina. O céu preto. O cavaleiro de joelhos.</p><p>Thorkel ficou quieta por tempo demais.</p><p>— Isso não deveria acontecer — disse, por fim. Voltou a olhar a estátua. — Flare me deu a vida dela para eu salvar o povo dela. E você, especialmente.</p><p>Kewy engoliu em seco.</p><p>— Não sou forte o bastante. Eu tentei, Thorkel. De verdade. Magia, exército. Sou uma pessoa comum, e não tem nada de errado nisso. As pessoas talentosas sempre vão passar na frente. Não tem o que fazer.</p><p>— Não estou pedindo que seja forte — disse ela. — Seu tio escreveu aquele livro para você, não para o palácio. Alguém da corte conta os nossos planos a Magnos, Kewy. Por isso a cura foi escondida no único código que nenhum traidor pensaria em estudar. Se vier comigo, eu o mantenho vivo até a última página.</p><p>— Eu só sei seguir receitas. Isso não é o mesmo que entender.</p><p>— Quando foi a última vez que você fez uma coisa todos os dias, sem ninguém mandar, até as pernas tremerem?</p><p>Kewy abriu a boca para responder e não encontrou resposta. As mãos foram sozinhas para o bolso do avental, as mesmas que faziam pão todos os dias, sem ninguém mandar.</p><p>— Cada um tem uma coisa — continuou Thorkel, calma. — Uma só. Quando acha a sua, para de perguntar se tem talento. Faz. Até as pernas tremerem e os braços caírem. A minha é a lâmina. A sua, deve descobrir. Mas ficar aqui também é uma escolha, e ela custa.</p><p>Um vento forte atravessou a praça. Folhas secas giraram no ar.</p><p>— Tem dias em que nada dá certo — disse ela, mais baixo. — Dias em que só queremos chorar, dormir, comer. Tudo bem, desde que você se levante de novo. Até o dia em que não conseguir mais respirar.</p><p>Colocou a máscara. Virou-se e começou a se afastar, e as palavras ficaram pairando.</p><p>Kewy permaneceu sozinho no centro da praça. O sol refletia na estátua da mãe, destacando as rachaduras que o tempo abrira na pedra. Olhou para as próprias mãos, que seguiam receitas com perfeição e tremiam diante de tudo o que não vinha com receita. Pensou nos cristais escuros subindo pelo braço da princesa. Pensou no ponto branco no dedo, que ele não contara a ninguém.</p><p>Ele não estava vivendo em paz. Estava só se anestesiando contra o medo de falhar de novo. E, pela primeira vez em dezoito anos, o medo de continuar sendo um covarde ficou maior do que o medo de falhar.</p><p>Com lágrimas nos olhos, ele disse, para a pedra:</p><p>— Dessa vez eu vou até o fim. Vou continuar a sua jornada e salvar todo mundo!</p><p>O sol subiu mais um palmo. Em algum lugar, um sino de navio anunciava o dia.</p></div><div class="chnav"><a class="btn ghost" href="../capitulo-4/">← Anterior</a><a class="btn" href="../capitulo-6/">Próximo →</a></div><div class="follow"><h4>Acompanhe a história</h4><p>Fique sabendo quando sair o próximo capítulo.</p><div class="links"><a class="btn ghost small" href="https://w1kerr.github.io/Jornada_dos_Her-is_Site/feed.xml" target="_blank" rel="noopener noreferrer">Feed RSS</a></div></div></div></section></main><footer class="site gutter">Jornada dos Heróis. Novos capítulos são publicados aqui conforme ficam prontos.</footer><script>(function(){var d=document.documentElement,K=function(k){try{return localStorage.getItem(k)}catch(e){return null}};var t=K('theme');d.dataset.theme=(t==='light')?'light':'dark';var at=Date.parse(d.dataset.at||'');if(at&&Date.now()<at){var mn=document.querySelector('main');if(mn){mn.innerHTML='<section class=\'view\'><div class=\'empty\'>Este capítulo será liberado em '+new Date(at).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'})+'.</div><p style=\'text-align:center\'><a class=\'btn ghost\' href=\'../\'>Ver capítulos</a></p></section>';setTimeout(function(){location.reload()},Math.min(at-Date.now()+1000,2147000000));}}var fs=parseInt(K('fs'),10)||19;function af(){d.style.setProperty('--fs',fs+'px');try{localStorage.setItem('fs',String(fs))}catch(e){}}af();document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-act]');if(!a)return;var k=a.dataset.act;if(k==='theme'){var dk=d.dataset.theme?d.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;d.dataset.theme=dk?'light':'dark';try{localStorage.setItem('theme',d.dataset.theme)}catch(x){}}if(k==='fs'){fs=Math.max(15,Math.min(28,fs+parseInt(a.dataset.d,10)));af();}if(k==='share'){var u=location.href.split('#')[0],tt=document.title;if(navigator.share){navigator.share({title:tt,url:u}).catch(function(){});}else{var ok=function(){a.textContent='Link copiado ✓';setTimeout(function(){a.textContent='Compartilhar'},2200)},no=function(){a.textContent='Copie o link da barra de endereço'};try{navigator.clipboard.writeText(u).then(ok,no)}catch(x){no()}}}});var p=document.getElementById('progress');function up(){var m=d.scrollHeight-innerHeight;p.style.width=(m>0?scrollY/m*100:0)+'%'}addEventListener('scroll',up,{passive:true});up();})();</script></body></html>
